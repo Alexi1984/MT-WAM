@@ -1,0 +1,10 @@
+defaults:
+- eval_libero
+- _self_
+benchmark: libero_plus
+seed: 20260707
+EVALUATION:
+  num_trials: 1
+  output_dir: ./runs/eval/libero_plus/${now:%Y%m%d_%H%M%S}
+MULTIRUN:
+  task_file: experiments/libero/ood_manifests/ood_variants_full10030.txt

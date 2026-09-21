@@ -1,0 +1,33 @@
+defaults:
+- train_robotwin
+- _self_
+ckpt: null
+gpu_id: 0
+model:
+  load_text_encoder: true
+  skip_dit_load_from_pretrain: true
+  action_dit_pretrained_path: null
+EVALUATION:
+  robotwin_root: ${oc.env:MTWAM_ROBOTWIN_ROOT,third_party/RoboTwin}
+  policy_name: mtwam_policy
+  task_name: null
+  task_config: demo_randomized
+  c2r_configs: null
+  instruction_type: unseen
+  eval_num_episodes: 50
+  output_dir: ./runs/eval/robotwin/${now:%Y%m%d_%H%M%S}
+  action_horizon: 32
+  replan_steps: 12
+  num_inference_steps: 10
+  sigma_shift: null
+  text_cfg_scale: 1.0
+  negative_prompt: ''
+  rand_device: cpu
+  tiled: false
+  timing_enabled: false
+  skip_get_obs_within_replan: true
+  dataset_stats_path: null
+  device: cuda
+MULTIRUN:
+  num_gpus: 8
+  max_tasks_per_gpu: 2

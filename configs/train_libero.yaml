@@ -1,0 +1,8 @@
+defaults:
+- _train_common
+- data: libero
+- model: mtwam
+- _self_
+benchmark: libero
+paths:
+  action_dit: ./pretrained_models/action_dit_libero.pt

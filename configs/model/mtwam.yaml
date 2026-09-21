@@ -1,0 +1,73 @@
+_target_: mtwam.runtime.create_mtwam
+model_id: ${paths.wan}
+tokenizer_model_id: ${paths.tokenizer}
+tokenizer_max_len: 128
+load_text_encoder: false
+proprio_dim: ${data.train.processor.proprio_output_dim}
+redirect_common_files: false
+mot_checkpoint_mixed_attn: false
+action_dit_pretrained_path: ${paths.action_dit}
+skip_dit_load_from_pretrain: false
+video_dit_pretrained_path: null
+enable_dynamic_branch: true
+dynamic_branch_num_layers: 10
+dynamic_branch_read_text: false
+dynamic_branch_ffn_moe: true
+dynamic_branch_ffn_moe_routing: role
+dynamic_branch_teacher_geometry: null
+dynamic_branch_dual_f0: true
+dynamic_branch_horizon: 2
+num_extra_ref_frames: 0
+video_dit_config:
+  has_image_input: false
+  patch_size:
+  - 1
+  - 2
+  - 2
+  in_dim: 48
+  hidden_dim: 3072
+  ffn_dim: 14336
+  freq_dim: 256
+  text_dim: 4096
+  out_dim: 48
+  num_heads: 24
+  attn_head_dim: 128
+  num_layers: 30
+  eps: 1.0e-06
+  seperated_timestep: true
+  require_clip_embedding: false
+  require_vae_embedding: false
+  fuse_vae_embedding_in_latents: true
+  use_gradient_checkpointing: ${model.mot_checkpoint_mixed_attn}
+  video_attention_mask_mode: first_frame_causal
+  action_conditioned: false
+  action_dim: ${data.train.processor.action_output_dim}
+  action_group_causal_mask_mode: group_diagonal
+action_dit_config:
+  action_dim: ${data.train.processor.action_output_dim}
+  hidden_dim: 1024
+  ffn_dim: 4096
+  num_heads: 24
+  attn_head_dim: 128
+  num_layers: 30
+  text_dim: 4096
+  freq_dim: 256
+  eps: 1.0e-06
+  use_gradient_checkpointing: ${model.mot_checkpoint_mixed_attn}
+video_scheduler:
+  train_shift: 5.0
+  infer_shift: 5.0
+  num_train_timesteps: 1000
+action_scheduler:
+  train_shift: 5.0
+  infer_shift: 5.0
+  num_train_timesteps: 1000
+loss:
+  lambda_video: 1.0
+  lambda_action: 1.0
+  lambda_traj: 0.5
+  lambda_tex: 0.25
+  traj_validity_mask: true
+dynamic_branch_camera_layout: ${data.train.concat_multi_camera}
+dynamic_branch_teacher_p_max: 2
+num_frames: ${data.train.num_frames}

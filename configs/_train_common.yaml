@@ -1,0 +1,55 @@
+paths:
+  data: ./data
+  wan: ./pretrained_models/Wan2.2-TI2V-5B
+  tokenizer: ./pretrained_models/Wan2.1-T2V-1.3B
+  action_dit: ./pretrained_models/action_dit.pt
+  cotracker: ./pretrained_models/scaled_offline.pth
+  dino: ./pretrained_models/dinov2_vitb14_pretrain.pth
+output_dir: ./runs/train/${now:%Y-%m-%d}_${now:%H-%M-%S}
+batch_size: 4
+num_workers: 8
+lr_scheduler_type: cosine
+learning_rate: 0.0001
+num_epochs: 10
+max_steps: null
+log_every: 10
+save_every: 4000
+eval_every: 0
+eval_num_inference_steps: 10
+gradient_accumulation_steps: 3
+mixed_precision: bf16
+seed: 42
+max_grad_norm: 1.0
+weight_decay: 0.01
+resume: null
+train_subset_size: null
+cotracker_checkpoint: ${paths.cotracker}
+dino_checkpoint: ${paths.dino}
+teacher_compile: null
+latent_cache:
+  out_dir: null
+  shard: 0
+  num_shards: 1
+  batch_size: 8
+  max_episodes: null
+  vae_only: true
+wandb:
+  enabled: false
+  workspace: null
+  project: mt-wam
+  name: train
+  group: null
+  mode: online
+hydra:
+  job:
+    chdir: false
+  run:
+    dir: .
+  output_subdir: null
+teacher_cache:
+  out_dir: null
+  overwrite: false
+  max_samples: null
+  shard: 0
+  num_shards: 1
+  exclude_episodes_file: null

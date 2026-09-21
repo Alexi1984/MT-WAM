@@ -1,0 +1,91 @@
+MT-WAM third-party copyright and license notices
+
+FastWAM
+Copyright (c) 2026 The FastWAM Authors.
+https://github.com/yuantianyuan01/FastWAM
+MIT; see the root LICENSE.
+
+Wan and DiffSynth-Studio
+https://github.com/Wan-Video/Wan2.2
+https://github.com/modelscope/DiffSynth-Studio
+Apache-2.0; see licenses/Wan-Apache-2.0.txt and licenses/Apache-2.0.txt.
+Covered components: video DiT, VAE, text encoder, weight conversion and
+model-loading utilities in src/mtwam/models/wan22.
+Modifications include package imports, model integration, attention interfaces
+and loading checks.
+Applicable files:
+src/mtwam/models/wan22/wan_video_dit.py
+src/mtwam/models/wan22/wan_video_vae.py
+src/mtwam/models/wan22/wan_video_text_encoder.py
+src/mtwam/models/wan22/helpers/io.py
+src/mtwam/models/wan22/helpers/state_dict_converters.py
+
+LeRobot, Copyright 2024 The HuggingFace Inc. team. All rights reserved.
+https://github.com/huggingface/lerobot
+Apache-2.0; see licenses/Apache-2.0.txt. Modified for package imports, dataset
+windows, episode selection, cache integration and video decoding.
+Applicable files:
+src/mtwam/datasets/lerobot/constants.py
+src/mtwam/datasets/lerobot/lerobot/lerobot_dataset.py
+src/mtwam/datasets/lerobot/lerobot/datasets/utils.py
+src/mtwam/datasets/lerobot/lerobot/datasets/compute_stats.py
+src/mtwam/datasets/lerobot/lerobot/datasets/video_utils.py
+
+NVIDIA utility adaptation
+Copyright (c) 2025 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+Apache-2.0; see licenses/Apache-2.0.txt.
+src/mtwam/utils/misc.py retains work-directory helpers adapted for MT-WAM.
+
+PyTorch3D, Copyright (c) Meta Platforms, Inc. and affiliates.
+https://github.com/facebookresearch/pytorch3d
+The rotation conversions in src/mtwam/datasets/lerobot/utils/rotation.py and
+the adapter in src/mtwam/datasets/lerobot/transforms/rotation.py retain
+PyTorch3D attribution.
+BSD-3-Clause; see licenses/PyTorch3D-BSD-3-Clause.txt.
+
+Robosuite
+Copyright (c) 2022 Stanford Vision and Learning Lab and UT Robot Perception
+and Learning Lab.
+https://github.com/ARISE-Initiative/robosuite
+The quaternion-to-axis-angle conversion in experiments/libero/libero_utils.py
+is adapted from robosuite.utils.transform_utils.quat2axisangle.
+MIT; see licenses/Robosuite-MIT.txt, including its MuJoCo notice.
+
+RoboTwin
+Copyright (c) 2025 Tianxing Chen
+https://github.com/RoboTwin-Platform/RoboTwin
+Source revision: bf44be51cf5717a5595ce59447f2cf5263d2aa95
+The runtime subset in third_party/RoboTwin is licensed under MIT; see
+third_party/RoboTwin/LICENSE and licenses/RoboTwin-MIT.txt. Modifications
+include evaluation integration, task configuration, resource paths, error
+handling and removal of non-runtime material. C2R single-axis configurations
+are projections of the original clean and randomized configurations.
+
+External teacher dependencies
+CoTracker: Copyright (c) Meta Platforms, Inc. and affiliates.
+https://github.com/facebookresearch/co-tracker
+Source revision: 82e02e8029753ad4ef13cf06be7f4fc5facdda4d
+CC BY-NC 4.0; see licenses/CoTracker-CC-BY-NC-4.0.txt. The installer applies
+a checked view-to-reshape modification for batched non-contiguous coordinates
+and includes a modification notice in the installed package. Its license
+restricts use to noncommercial purposes; the MT-WAM MIT license does not
+replace this license. CoTracker source and weights are downloaded separately.
+
+DINOv2: Copyright (c) Meta Platforms, Inc. and affiliates.
+https://github.com/facebookresearch/dinov2
+Source revision: 7764ea0f912e53c92e82eb78a2a1631e92725fc8
+Apache-2.0; see licenses/DINOv2-Apache-2.0.txt. The installer changes dependency
+metadata for frozen backbone inference and includes a modification notice.
+The DINOv2 model implementation is unchanged and downloaded separately.
+
+External RoboTwin planner dependency
+CuRobo: Copyright (c) 2023 NVIDIA CORPORATION & AFFILIATES.
+https://github.com/NVlabs/curobo
+Source revision: d64c4b005459db10c5dd867d8b30a87d5bda9bdb
+NVIDIA License; see licenses/CuRobo-NVIDIA.txt. This version limits use to
+noncommercial research or evaluation. Its code is downloaded separately.
+
+LIBERO and LIBERO-Plus are installed separately from their respective public
+repositories. Their code, simulator assets and datasets retain their own
+licenses. Downloaded Wan, teacher and simulator assets are not included in
+this distribution; the licenses accompanying each download continue to apply.
